@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-image: url("SolarStorm.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+div{
+    background-color: greenyellow;
+}
+h2{
+    color: white;
+}
+
+h3 {
+    margin-top: 20px;
+}
