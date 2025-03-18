@@ -13,17 +13,22 @@ document.getElementById("stormForm").addEventListener("submit", async function(e
         "f10.7_index": parseFloat(document.getElementById("f10_index").value),
         "AE-index, nT": parseFloat(document.getElementById("ae_index").value)
     };
+    
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/predict", {
+        const response = await fetch("/predict", {  // Adjust URL if hosted externally
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(inputData)
         });
 
+        if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+        }
+
         const result = await response.json();
         document.getElementById("result").innerText = `Prediction: ${result.storm_prediction}, Probability: ${result.probability}`;
     } catch (error) {
-        document.getElementById("result").innerText = "Error predicting storm!";
+        document.getElementById("result").innerText = "Error predicting storm! " + error.message;
     }
 });

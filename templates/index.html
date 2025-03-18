@@ -5,49 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Storm Prediction</title>
     <script defer src="{{ url_for('static', filename='script.js') }}"></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="my_icon.jpg">
 </head>
 <body>
     
-    <div>
-        <h2>Solar Storm Prediction</h2>
+    <div class="form-container">
+        <h1>Solar Storm Prediction</h1>
+        <form action="/predict" method="POST" id="stormForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="scalar_b">Scalar B, nT:</label>
+                    <input type="number" id="scalar_b" required placeholder="Scalar B, nT">
+                </div>
+                <div class="form-group">
+                    <label for="bz_gsm">BZ, nT (GSM):</label>
+                    <input type="number" name="bz_gsm" id="bz_gsm" required placeholder="BZ, nT (GSM)">
+                </div>
+                <div class="form-group">
+                    <label for="proton_density">SW Proton Density, N/cm³:</label>
+                    <input type="number" name="proton_density" id="proton_density" required placeholder="SW Proton Density, N/cm³">
+                </div>
+                <div class="form-group">
+                    <label for="plasma_speed">SW Plasma Speed, km/s:</label>
+                    <input type="number" name="plasma_speed" id="plasma_speed" required placeholder="SW Plasma Speed, km/s">
+                </div>
+                <div class="form-group">
+                    <label for="flow_pressure">Flow Pressure:</label>
+                    <input type="number" name="flow_pressure" id="flow_pressure" required placeholder="Flow Pressure">
+                </div>
+                <div class="form-group">
+                    <label for="electric_field">E Electric Field:</label>
+                    <input type="number" name="electric_field" id="electric_field" required placeholder="E Electric Field">
+                </div>
+                <div class="form-group">
+                    <label for="alfven_mach">Alfven Mach Number:</label>
+                    <input type="number" name="alfven_mach" id="alfven_mach" required placeholder="Alfven Mach Number">
+                </div>
+                <div class="form-group">
+                    <label for="dst_index">Dst-index, nT:</label>
+                    <input type="number" name="dst_index" id="dst_index" required placeholder="Dst-index, nT">
+                </div>
+                <div class="form-group">
+                    <label for="f10_index">f10_.7 Index:</label>
+                    <input type="number" name="f10_index" id="f10_index" required placeholder="f10_.7 Index">
+                </div>
+                <div class="form-group">
+                    <label for="ae_index">AE-index, nT:</label>
+                    <input type="number" name="ae_index" id="ae_index" required placeholder="AE-index, nT">
+                </div>
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+        <h3 id="result"></h3>
     </div>
-
-    <form id="stormForm">
-        <label for="scalar_b">Scalar B, nT:</label>
-        <input type="number" id="scalar_b" required>
-
-        <label for="bz_gsm">BZ, nT (GSM):</label>
-        <input type="number" id="bz_gsm" required>
-
-        <label for="proton_density">SW Proton Density, N/cm³:</label>
-        <input type="number" id="proton_density" required>
-
-        <label for="plasma_speed">SW Plasma Speed, km/s:</label>
-        <input type="number" id="plasma_speed" required>
-
-        <label for="flow_pressure">Flow Pressure:</label>
-        <input type="number" id="flow_pressure" required>
-
-        <label for="electric_field">E Electric Field:</label>
-        <input type="number" id="electric_field" required>
-
-        <label for="alfven_mach">Alfen Mach Number:</label>
-        <input type="number" id="alfven_mach" required>
-
-        <label for="dst_index">Dst-index, nT:</label>
-        <input type="number" id="dst_index" required>
-
-        <label for="f10_index">f10.7 Index:</label>
-        <input type="number" id="f10_index" required>
-
-        <label for="ae_index">AE-index, nT:</label>
-        <input type="number" id="ae_index" required>
-
-        <button type="submit">Predict</button>
-    </form>
-
-    <h3 id="result"></h3>
 </body>
 </html>
