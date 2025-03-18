@@ -27,7 +27,32 @@ document.getElementById("stormForm").addEventListener("submit", async function(e
         }
 
         const result = await response.json();
-        document.getElementById("result").innerText = `Prediction: ${result.storm_prediction}, Probability: ${result.probability}`;
+        document.querySelector(".form-container").innerHTML = `
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 50vh;
+            max-height: 80vh;
+            color: white;
+        ">
+            <img src="/static/${result.probability < 0.5 ? "solarStay.jpg" : "solarRun.jpg"}" 
+                alt="Solar Activity"
+                style="
+                    width: 100%;
+                    max-width: 400px;
+                    height: auto;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+                "
+            >
+            <h3 style="margin-top: 10px; font-size: 1.5em;">
+                There will be ${result.storm_prediction}
+            </h3>
+        </div>
+    `; 
     } catch (error) {
         document.getElementById("result").innerText = "Error predicting storm! " + error.message;
     }

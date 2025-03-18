@@ -42,7 +42,7 @@ def predict():
         probability = model.predict_proba(input_features)[0][1]
 
         return jsonify({
-            "storm_prediction": "Storm" if prediction == 1 else "No Storm",
+            "storm_prediction": "storm" if prediction == 1 else "no storm",
             "probability": round(probability, 4)
         })
 
